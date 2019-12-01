@@ -11,12 +11,12 @@ namespace Dreidel.Function
     {
         [FunctionName("DreidelRequest")]
         public static DreidelModel Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "Dreidel/Spin")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Dreidel/Spin")] HttpRequest req,
             ILogger log)
         {
             List<DreidelModel> dreidelModels = GetDreidelModels();
 
-            Random rnd = new Random();
+            Random rnd = new Random(Environment.TickCount);
             int sideIndex = rnd.Next(1, dreidelModels.Count) - 1;
 
             return dreidelModels[sideIndex];
