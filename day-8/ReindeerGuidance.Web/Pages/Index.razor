@@ -1,0 +1,45 @@
+﻿@page "/"
+
+    <p class="text-center">
+        <span class="badge" id="service-status"></span>
+    </p>
+
+<table id="table-incidents" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Status</th>
+      <th scope="col">Incident</th>
+      <th scope="col">Notes</th>
+      <th scope="col">Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var line in Lines) {
+      <tr>
+          <td>@line</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td></td>
+      </tr>
+      }
+  </tbody>
+</table>
+
+@code {
+
+    private List<string> Lines { get; set; }
+
+    public Index()
+    {
+        Lines = new List<string>();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    public void AddItem()
+    {
+        Lines.Add("new item");
+    }
+}
