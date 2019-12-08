@@ -29,6 +29,30 @@ The "*Open*" state means **we have a problem** (Service Disruption / Offline).
 The "*Closed*" state means **our problem is resolved** (Service Restored / Online).
 The "*Ongoing*" state means **we are still investigating** (Standby for more updates).
 
+## Configuration ##
+
+In order to use this application, there are some configurations you should do first. ``local.settings.json`` in ``ReindeerGuidance.Functions`` project:
+```js
+// ReindeerGuidance.Functions / local.settings.json
+{
+  "Values": {
+    "StorageName": "{{Azure Table Storage Name}}",
+    "AccessKey": "{{Access Key of Azure Table Storage}}",
+    "AzureSignalRConnectionString": "{{Azure SignalR Connection String}}"
+  }
+}
+```
+And the ``config.js`` file in ``ReindeerGuidance.Web`` under ``wwwroot\js``:
+
+```js
+const apiConfig = {
+    'endpointUrl': 'http://localhost:7071/api' // The URL of the Functions app endpoint
+}
+```
+
+## How to run ##
+
+The Blazor web application is using the Functions App to retrieve data from the Azure Table Storage, so to ensure that everything works properly, please start the **Function app first** and then the **Blazor App**.
 
 ## Resources/Tools Used 🚀
 
@@ -55,6 +79,10 @@ The "*Ongoing*" state means **we are still investigating** (Standby for more upd
 * Docs: [https://docs.microsoft.com/azure/azure-signalr/signalr-overview/](https://docs.microsoft.com/azure/azure-signalr/signalr-overview/?WT.mc_id=25daysofserverless-github-cxa)
 * w/ Azure Functions: [https://docs.microsoft.com/azure/azure-signalr/signalr-concept-azure-functions/](https://docs.microsoft.com/azure/azure-signalr/signalr-concept-azure-functions/?WT.mc_id=25daysofserverless-github-cxa)
 * Learn: [https://docs.microsoft.com/learn/modules/automatic-update-of-a-webapp-using-azure-functions-and-signalr/](https://docs.microsoft.com/learn/modules/automatic-update-of-a-webapp-using-azure-functions-and-signalr/?WT.mc_id=25daysofserverless-github-cxa)
+
+✅ **Blazor:**
+
+* Docs: [https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor)
 
 ## Next Steps 🏃
 
